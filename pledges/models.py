@@ -24,8 +24,8 @@ class Question(models.Model):
     """ Questions related to the specific action. """
 
     class QuestionType(models.IntegerChoices):
-        NUMBER = 1, _('Numeric Response')
-        SELECT = 2, _('Multiple Choice Response')
+        NUMBER = 1, _('Numeric')
+        SELECT = 2, _('Multiple Choice')
 
     action = models.ForeignKey(Action, on_delete=models.CASCADE, related_name='questions')
     question_number = models.CharField(max_length=10)
@@ -55,6 +55,7 @@ class Pledge(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pledges')
     action = models.ForeignKey(Action, on_delete=models.CASCADE, related_name='pledges')
+    version = models.FloatField()
     date = models.DateTimeField(default=timezone.now)
     # CO2 savings
     # Water savings
